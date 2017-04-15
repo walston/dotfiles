@@ -16,18 +16,19 @@ call vundle#begin()
 let g:ycm_confirm_extra_conf = 0
 
 Plugin 'VundleVim/Vundle.vim'
-
+Plugin 'SirVer/ultisnips'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'isRuslan/vim-es6'
+Plugin 'w0rp/ale'
+Plugin 'mattn/emmet-vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'zefei/vim-wintabs'
 Plugin 'Valloric/YouCompleteMe'
 " This plugin requires compiling!!
 " https://github.com/Valloric/YouCompleteMe#mac-os-x
-
-Plugin 'SirVer/ultisnips'
-
-Plugin 'leafgarland/typescript-vim'
-
-Plugin 'isRuslan/vim-es6'
 
 call vundle#end()
 filetype plugin indent on
 
 highlight LineNr cterm=bold ctermfg=darkgrey
+
