@@ -17,14 +17,20 @@ call vundle#begin()
 let g:ycm_confirm_extra_conf = 0
 
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'airblade/vim-gitgutter'
+
+Plugin 'airblade/vim-gitgutter'     " Git changes in gutter
+Plugin 'scrooloose/nerdtree'        " Project Directory Tree
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'kien/ctrlp.vim'             " Fuzzy Search
+Plugin 'mattn/emmet-vim'            " HTML shortcuts
 Plugin 'ternjs/tern_for_vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'leafgarland/typescript-vim'
-Plugin 'isRuslan/vim-es6'
-Plugin 'w0rp/ale'
-Plugin 'mattn/emmet-vim'
+Plugin 'isRuslan/vim-es6'           " Syntax
+Plugin 'w0rp/ale'                   " Linting
 Plugin 'zefei/vim-wintabs'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'Valloric/YouCompleteMe'
 " This plugin requires compiling!!
 " https://github.com/Valloric/YouCompleteMe#mac-os-x
@@ -33,7 +39,6 @@ call vundle#end()
 filetype plugin indent on
 
 syntax on
-
 "Chrome Highlighting
 hi LineNr ctermfg=LightGray ctermbg=Black cterm=none
 
@@ -59,3 +64,9 @@ if has('statusline')
   set statusline+=%-7.(%l,%c%V%)\ %<%P         " cursor position/offset
 endif
 
+" HotKeys
+map <C-\> :NERDTreeToggle<CR>
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+let g:ctrlp_custom_ignore = { 'dir': 'node_modules$' }
