@@ -21,7 +21,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'airblade/vim-gitgutter'     " Git changes in gutter
 Plugin 'scrooloose/nerdtree'        " Project Directory Tree
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'kien/ctrlp.vim'             " Fuzzy Search
+Plugin 'ctrlpvim/ctrlp.vim'         " Fuzzy Search
 Plugin 'mattn/emmet-vim'            " HTML shortcuts
 Plugin 'ternjs/tern_for_vim'
 Plugin 'SirVer/ultisnips'
@@ -38,6 +38,11 @@ Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
 filetype plugin indent on
 
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+
 syntax on
 "Chrome Highlighting
 hi LineNr ctermfg=LightGray ctermbg=Black cterm=none
@@ -45,6 +50,8 @@ hi LineNr ctermfg=LightGray ctermbg=Black cterm=none
 function! SyntaxItem()
   return synIDattr(synID(line("."),col("."),1),"name")
 endfunction
+
+map <C-n> :NERDTreeToggle<CR>
 
 if has('statusline')
   set statusline=%#Statement#                  " set highlighting
