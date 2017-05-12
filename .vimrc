@@ -21,16 +21,14 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'airblade/vim-gitgutter'     " Git changes in gutter
 Plugin 'scrooloose/nerdtree'        " Project Directory Tree
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'jiangmiao/auto-pairs'
 Plugin 'ctrlpvim/ctrlp.vim'         " Fuzzy Search
+Plugin 'Quramy/tsuquyomi'           " TypeScript IDE integration
 Plugin 'mattn/emmet-vim'            " HTML shortcuts
+Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'ternjs/tern_for_vim'
 Plugin 'SirVer/ultisnips'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'isRuslan/vim-es6'           " Syntax
 Plugin 'w0rp/ale'                   " Linting
-Plugin 'zefei/vim-wintabs'
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'Valloric/YouCompleteMe'
 " This plugin requires compiling!!
 " https://github.com/Valloric/YouCompleteMe#mac-os-x
@@ -38,20 +36,22 @@ Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
 filetype plugin indent on
 
-if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
+" Functions
+function! SyntaxItem()
+  return synIDattr(synID(line("."),col("."),1),"name")
+endfunction
+
+" Automated Commands
+autocmd FileType * autocmd BufWritePre <buffer> EnableStripWhitespaceOnSave
 
 syntax on
 "Chrome Highlighting
 hi LineNr ctermfg=LightGray ctermbg=Black cterm=none
 
-function! SyntaxItem()
-  return synIDattr(synID(line("."),col("."),1),"name")
-endfunction
-
-map <C-n> :NERDTreeToggle<CR>
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
 
 if has('statusline')
   set statusline=%#Statement#                  " set highlighting
@@ -72,7 +72,12 @@ if has('statusline')
 endif
 
 " HotKeys
-map <C-\> :NERDTreeToggle<CR>
+nmap <C-n> :NERDTreeToggle<CR>
+nmap <C-S-n> :NERDTreeFind<CR>
+nmap <C-7> :res +5<CR> " increase pane by 2
+nmap <C-8> :res -5<CR> " decrease pane by 2
+nmap ( :vertical res -5<CR> " vertical increase pane by 2
+nmap ) :vertical res +5<CR> " vertical decrease pane by 2
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
