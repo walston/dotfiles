@@ -1,3 +1,4 @@
+set directory=$HOME/.vim/swapfiles//
 set nocompatible
 set background=dark
 set tabstop=2
@@ -26,8 +27,11 @@ Plugin 'mattn/emmet-vim'            " HTML shortcuts
 Plugin 'ternjs/tern_for_vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'leafgarland/typescript-vim'
-Plugin 'isRuslan/vim-es6'           " Syntax
+Plugin 'Quramy/tsuquyomi'           " TypeScript
+Plugin 'pangloss/vim-javascript'    " Syntax
 Plugin 'w0rp/ale'                   " Linting
+Plugin 'maksimr/vim-jsbeautify'     " Requires submodule updates
+Plugin 'gko/vim-coloresque'         " Pigment style HiLite
 Plugin 'zefei/vim-wintabs'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'othree/javascript-libraries-syntax.vim'
@@ -50,7 +54,6 @@ hi LineNr ctermfg=LightGray ctermbg=Black cterm=none
 function! SyntaxItem()
   return synIDattr(synID(line("."),col("."),1),"name")
 endfunction
-
 map <C-n> :NERDTreeToggle<CR>
 
 if has('statusline')
