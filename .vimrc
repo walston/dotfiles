@@ -1,4 +1,3 @@
-set directory=$HOME/.vim/swapfiles//
 set nocompatible
 set background=dark
 set tabstop=2
@@ -42,19 +41,14 @@ Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
 filetype plugin indent on
 
-if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
-
 syntax on
 "Chrome Highlighting
 hi LineNr ctermfg=LightGray ctermbg=Black cterm=none
 
-function! SyntaxItem()
-  return synIDattr(synID(line("."),col("."),1),"name")
-endfunction
-map <C-n> :NERDTreeToggle<CR>
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
 
 if has('statusline')
   set statusline=%#Statement#                  " set highlighting
@@ -75,7 +69,12 @@ if has('statusline')
 endif
 
 " HotKeys
-map <C-\> :NERDTreeToggle<CR>
+nmap <C-n> :NERDTreeToggle<CR>
+nmap <C-S-n> :NERDTreeFind<CR>
+nmap <C-7> :res +5<CR> " increase pane by 2
+nmap <C-8> :res -5<CR> " decrease pane by 2
+nmap ( :vertical res -5<CR> " vertical increase pane by 2
+nmap ) :vertical res +5<CR> " vertical decrease pane by 2
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 

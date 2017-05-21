@@ -1,3 +1,4 @@
-# Tern Project info
+# Vim IDE requirements
 .tern-project
-
+*.swp
+*~
