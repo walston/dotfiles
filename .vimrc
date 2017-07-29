@@ -5,6 +5,9 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 set backspace=indent,eol,start
+set laststatus=2
+set splitbelow
+set splitright
 set rnu
 set nu
 
@@ -19,6 +22,7 @@ let g:ycm_confirm_extra_conf = 0
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'airblade/vim-gitgutter'     " Git changes in gutter
+Plugin 'tpope/vim-fugitive'         " Git changes in gutter
 Plugin 'scrooloose/nerdtree'        " Project Directory Tree
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'ctrlpvim/ctrlp.vim'         " Fuzzy Search
@@ -62,7 +66,6 @@ if has('statusline')
   set statusline+=%{((exists(\"+bomb\")\ &&\ &bomb)?\"B,\":\"\")} " BOM
   set statusline+=%{&fileformat},              " file format
   set statusline+=%{&spelllang},               " language of spelling checker
-  set statusline+=%{SyntaxItem()}              " syntax highlight group under cursor
   set statusline+=%=                           " ident to the right
   set statusline+=0x%-8B\                      " character code under cursor
   set statusline+=%-7.(%l,%c%V%)\ %<%P         " cursor position/offset
