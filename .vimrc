@@ -52,16 +52,17 @@ hi TabLine ctermbg=8 ctermfg=7 cterm=underline
 hi TabLineSel ctermbg=8 ctermfg=10 cterm=underline
 hi TabLineFill ctermbg=8 ctermfg=8 cterm=none
 
+hi StatusLine ctermbg=8
+hi StatusLineBufferNumber ctermbg=8 ctermfg=5
+hi StatusLineFileName ctermbg=8 ctermfg=10
+hi StatusLineAuxData ctermbg=8 ctermfg=6
+
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 
 if has('statusline')
-  hi StatusLine ctermbg=8
-  hi StatusLineBufferNumber ctermbg=8 ctermfg=2
-  hi StatusLineFileName ctermbg=8 ctermfg=5
-  hi StatusLineAuxData ctermbg=8 ctermfg=6
   set statusline=%#StatusLineBufferNumber#     " set highlighting
   set statusline+=%-2.2n\                      " buffer number
   set statusline+=%#StatusLineFileName#        " set highlighting
