@@ -55,11 +55,14 @@ if executable('ag')
 endif
 
 if has('statusline')
-  set statusline=%#Statement#                  " set highlighting
+  hi StatusLineBufferNumber ctermbg=DarkGrey ctermfg=LightMagenta
+  hi StatusLineFileName ctermbg=DarkGrey ctermfg=LightBlue
+  hi StatusLineAuxData ctermbg=DarkGrey ctermfg=LightGreen
+  set statusline=%#StatusLineBufferNumber#     " set highlighting
   set statusline+=%-2.2n\                      " buffer number
-  set statusline+=%#WarningMsg#                " set highlighting
+  set statusline+=%#StatusLineFileName#        " set highlighting
   set statusline+=%f\                          " file name
-  set statusline+=%#Question#                  " set highlighting
+  set statusline+=%#StatusLineAuxData#         " set highlighting
   set statusline+=%h%m%r%w\                    " flags
   set statusline+=%{strlen(&ft)?&ft:'none'},   " file type
   set statusline+=%{(&fenc==\"\"?&enc:&fenc)}, " encoding
@@ -68,7 +71,8 @@ if has('statusline')
   set statusline+=%{&spelllang},               " language of spelling checker
   set statusline+=%=                           " ident to the right
   set statusline+=0x%-8B\                      " character code under cursor
-  set statusline+=%-7.(%l,%c%V%)\ %<%P         " cursor position/offset
+  set statusline+=@%-7.(%l,%c%V%)\ %<%P        " cursor position/offset
+  hi StatusLine ctermbg=Black
 endif
 
 " HotKeys
