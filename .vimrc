@@ -47,7 +47,7 @@ filetype plugin indent on
 
 syntax on
 "Chrome Highlighting
-hi LineNr ctermfg=LightGray ctermbg=Black cterm=none
+hi LineNr ctermfg=7 ctermbg=0 cterm=none
 
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
@@ -55,9 +55,10 @@ if executable('ag')
 endif
 
 if has('statusline')
-  hi StatusLineBufferNumber ctermbg=DarkGrey ctermfg=LightMagenta
-  hi StatusLineFileName ctermbg=DarkGrey ctermfg=LightBlue
-  hi StatusLineAuxData ctermbg=DarkGrey ctermfg=LightGreen
+  hi StatusLine ctermbg=8
+  hi StatusLineBufferNumber ctermbg=8 ctermfg=2
+  hi StatusLineFileName ctermbg=8 ctermfg=5
+  hi StatusLineAuxData ctermbg=8 ctermfg=6
   set statusline=%#StatusLineBufferNumber#     " set highlighting
   set statusline+=%-2.2n\                      " buffer number
   set statusline+=%#StatusLineFileName#        " set highlighting
@@ -72,7 +73,6 @@ if has('statusline')
   set statusline+=%=                           " ident to the right
   set statusline+=0x%-8B\                      " character code under cursor
   set statusline+=@%-7.(%l,%c%V%)\ %<%P        " cursor position/offset
-  hi StatusLine ctermbg=Black
 endif
 
 " HotKeys
