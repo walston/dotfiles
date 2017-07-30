@@ -35,7 +35,6 @@ Plugin 'pangloss/vim-javascript'    " Syntax
 Plugin 'w0rp/ale'                   " Linting
 Plugin 'maksimr/vim-jsbeautify'     " Requires submodule updates
 Plugin 'gko/vim-coloresque'         " Pigment style HiLite
-Plugin 'zefei/vim-wintabs'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'Valloric/YouCompleteMe'
@@ -48,6 +47,10 @@ filetype plugin indent on
 syntax on
 "Chrome Highlighting
 hi LineNr ctermfg=7 ctermbg=0 cterm=none
+
+hi TabLine ctermbg=8 ctermfg=7 cterm=underline
+hi TabLineSel ctermbg=8 ctermfg=10 cterm=underline
+hi TabLineFill ctermbg=8 ctermfg=8 cterm=none
 
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
