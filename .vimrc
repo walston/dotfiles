@@ -29,9 +29,9 @@ Plugin 'ctrlpvim/ctrlp.vim'         " Fuzzy Search
 Plugin 'mattn/emmet-vim'            " HTML shortcuts
 Plugin 'ternjs/tern_for_vim'
 Plugin 'SirVer/ultisnips'
-Plugin 'leafgarland/typescript-vim'
 Plugin 'Quramy/tsuquyomi'           " TypeScript
-Plugin 'pangloss/vim-javascript'    " Syntax
+Plugin 'leafgarland/typescript-vim' " Typescript Syntax
+Plugin 'pangloss/vim-javascript'    " EcmaScript Syntax
 Plugin 'w0rp/ale'                   " Linting
 Plugin 'maksimr/vim-jsbeautify'     " Requires submodule updates
 Plugin 'gko/vim-coloresque'         " Pigment style HiLite
@@ -45,8 +45,24 @@ call vundle#end()
 filetype plugin indent on
 
 syntax on
+
+"Syntax Highlighting
+hi Type ctermbg=none ctermfg=5 cterm=none
+hi Constant ctermbg=none ctermfg=3 cterm=none
+hi Identifier ctermbg=none ctermfg=11 cterm=none
+hi Statement ctermbg=none ctermfg=15 cterm=none
+hi MatchParen ctermbg=none ctermfg=7 cterm=none
+hi Special ctermbg=none ctermfg=3 cterm=none
+hi Comment ctermbg=none ctermfg=7 cterm=none
+hi PreProc ctermbg=none ctermfg=7 cterm=none
+hi Todo ctermbg=8 ctermbg=5 cterm=italic
+hi Underlined ctermbg=none ctermfg=none cterm=underline
+hi Error ctermbg=9 ctermfg=16 cterm=none
+
 "Chrome Highlighting
 hi LineNr ctermfg=7 ctermbg=0 cterm=none
+hi StatusLineNC ctermfg=0 ctermbg=8 cterm=none
+hi VertSplit ctermfg=0 ctermbg=8 cterm=none
 
 hi TabLine ctermbg=8 ctermfg=7 cterm=underline
 hi TabLineSel ctermbg=8 ctermfg=10 cterm=underline
@@ -79,14 +95,29 @@ if has('statusline')
   set statusline+=@%-7.(%l,%c%V%)\ %<%P        " cursor position/offset
 endif
 
+augroup CursorLine
+    au!
+    au VimEnter * setlocal cursorline
+    au WinEnter * setlocal cursorline
+    au BufWinEnter * setlocal cursorline
+    au WinLeave * setlocal nocursorline
+augroup END
+
 " HotKeys
-nmap <C-n> :NERDTreeToggle<CR>
-nmap <C-S-n> :NERDTreeFind<CR>
+nmap <C-\> :NERDTreeToggle<CR>
+nmap <C-S-f> :NERDTreeFind<CR>
 nmap <C-7> :res +5<CR> " increase pane by 2
 nmap <C-8> :res -5<CR> " decrease pane by 2
-nmap ( :vertical res -5<CR> " vertical increase pane by 2
-nmap ) :vertical res +5<CR> " vertical decrease pane by 2
+nnoremap <C-H> <C-W><C-H>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
 
 let g:ctrlp_custom_ignore = { 'dir': 'node_modules$' }
