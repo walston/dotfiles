@@ -22,21 +22,16 @@ let g:ycm_confirm_extra_conf = 0
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'airblade/vim-gitgutter'     " Git changes in gutter
-Plugin 'tpope/vim-fugitive'         " Git changes in gutter
+Plugin 'tpope/vim-fugitive'         " Git integration 
 Plugin 'scrooloose/nerdtree'        " Project Directory Tree
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'ctrlpvim/ctrlp.vim'         " Fuzzy Search
-Plugin 'mattn/emmet-vim'            " HTML shortcuts
-Plugin 'ternjs/tern_for_vim'
 Plugin 'SirVer/ultisnips'
+Plugin 'othree/html5.vim'           " HTML5
 Plugin 'Quramy/tsuquyomi'           " TypeScript
-Plugin 'leafgarland/typescript-vim' " Typescript Syntax
-Plugin 'pangloss/vim-javascript'    " EcmaScript Syntax
+Plugin 'isRuslan/vim-es6'           " ECMAscript
 Plugin 'w0rp/ale'                   " Linting
-Plugin 'maksimr/vim-jsbeautify'     " Requires submodule updates
 Plugin 'gko/vim-coloresque'         " Pigment style HiLite
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'Valloric/YouCompleteMe'
 " This plugin requires compiling!!
 " https://github.com/Valloric/YouCompleteMe#mac-os-x
@@ -47,17 +42,26 @@ filetype plugin indent on
 syntax on
 
 "Syntax Highlighting
+hi Normal ctermbg=none ctermfg=7 cterm=none
 hi Type ctermbg=none ctermfg=5 cterm=none
+hi Keyword ctermbg=none ctermfg=5 cterm=none
 hi Constant ctermbg=none ctermfg=3 cterm=none
-hi Identifier ctermbg=none ctermfg=11 cterm=none
+hi String ctermbg=none ctermfg=2 cterm=none
+hi Number ctermbg=none ctermfg=3 cterm=none
+hi Boolean ctermbg=none ctermfg=3 cterm=none
+hi Identifier ctermbg=none ctermfg=1 cterm=none
+hi Function ctermbg=none ctermfg=4 cterm=none
 hi Statement ctermbg=none ctermfg=15 cterm=none
 hi MatchParen ctermbg=none ctermfg=7 cterm=none
 hi Special ctermbg=none ctermfg=3 cterm=none
-hi Comment ctermbg=none ctermfg=7 cterm=none
+hi Comment ctermbg=none ctermfg=none cterm=none
 hi PreProc ctermbg=none ctermfg=7 cterm=none
 hi Todo ctermbg=8 ctermbg=5 cterm=italic
 hi Underlined ctermbg=none ctermfg=none cterm=underline
 hi Error ctermbg=9 ctermfg=16 cterm=none
+hi DiffAdd ctermbg=2 ctermfg=0 cterm=none
+hi DiffChange ctermbg=3 ctermfg=0 cterm=none
+hi DiffDelete ctermbg=1 ctermfg=0 cterm=none
 
 "Chrome Highlighting
 hi LineNr ctermfg=7 ctermbg=0 cterm=none
