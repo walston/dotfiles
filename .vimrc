@@ -31,6 +31,8 @@ Plugin 'othree/html5.vim'           " HTML5
 Plugin 'Quramy/tsuquyomi'           " TypeScript
 Plugin 'isRuslan/vim-es6'           " ECMAscript
 Plugin 'w0rp/ale'                   " Linting
+Plugin 'leafgarland/typescript-vim' " TS Syntax Highlighting
+Plugin 'Quramy/vim-js-pretty-template' "Template String Highlighting
 Plugin 'gko/vim-coloresque'         " Pigment style HiLite
 Plugin 'Valloric/YouCompleteMe'
 " This plugin requires compiling!!
@@ -108,7 +110,7 @@ augroup CursorLine
 augroup END
 
 " HotKeys
-nmap <C-\> :NERDTreeToggle<CR>
+nmap <C-]> :NERDTreeToggle<CR>
 nmap <C-S-f> :NERDTreeFind<CR>
 nmap <C-7> :res +5<CR> " increase pane by 2
 nmap <C-8> :res -5<CR> " decrease pane by 2
