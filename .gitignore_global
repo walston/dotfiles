@@ -2,3 +2,6 @@
 .tern-project
 *.swp
 *~
+
+# sidenotes
+notes.md
