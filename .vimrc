@@ -24,6 +24,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'airblade/vim-gitgutter'     " Git changes in gutter
 Plugin 'tpope/vim-fugitive'         " Git integration 
 Plugin 'scrooloose/nerdtree'        " Project Directory Tree
+Plugin 'joshdick/onedark.vim'       " Color scheme
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'ctrlpvim/ctrlp.vim'         " Fuzzy Search
 Plugin 'SirVer/ultisnips'

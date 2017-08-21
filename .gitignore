@@ -2,6 +2,7 @@
 !.gitignore
 !.gitignore_global
 !.vimrc
+!.gvimrc
 !.zshrc
 !.bashrc
 !.bash_profile
