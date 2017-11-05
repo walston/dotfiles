@@ -12,6 +12,7 @@ set rnu
 set nu
 
 filetype off
+syntax off
 
 "Vundle Configuration
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -20,24 +21,30 @@ call vundle#begin()
 let g:ycm_confirm_extra_conf = 0
 
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'maralla/completor.vim'
 
-Plugin 'airblade/vim-gitgutter'     " Git changes in gutter
-Plugin 'tpope/vim-fugitive'         " Git integration 
-Plugin 'scrooloose/nerdtree'        " Project Directory Tree
-Plugin 'joshdick/onedark.vim'       " Color scheme
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'haya14busa/incsearch.vim'
+
+" Project Management
+Plugin 'airblade/vim-gitgutter'
 Plugin 'ctrlpvim/ctrlp.vim'         " Fuzzy Search
-Plugin 'SirVer/ultisnips'
-Plugin 'othree/html5.vim'           " HTML5
-Plugin 'Quramy/tsuquyomi'           " TypeScript
-Plugin 'isRuslan/vim-es6'           " ECMAscript
+Plugin 'scrooloose/nerdtree'        " Project Directory Tree
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'w0rp/ale'                   " Linting
+
+" JavaScript
+Plugin 'isRuslan/vim-es6'           " ECMAscript
+
+" TypeScript
+Plugin 'Quramy/tsuquyomi'           " TypeScript
 Plugin 'leafgarland/typescript-vim' " TS Syntax Highlighting
 Plugin 'Quramy/vim-js-pretty-template' "Template String Highlighting
+Plugin 'othree/html5.vim'           " HTML5
+
+" Cool stuff
 Plugin 'gko/vim-coloresque'         " Pigment style HiLite
-Plugin 'Valloric/YouCompleteMe'
-" This plugin requires compiling!!
-" https://github.com/Valloric/YouCompleteMe#mac-os-x
+Plugin 'SirVer/ultisnips'
+Plugin 'joshdick/onedark.vim'       " Color scheme
 
 call vundle#end()
 filetype plugin indent on
@@ -111,8 +118,6 @@ augroup CursorLine
 augroup END
 
 " HotKeys
-nmap <C-]> :NERDTreeToggle<CR>
-nmap <C-S-f> :NERDTreeFind<CR>
 nmap <C-7> :res +5<CR> " increase pane by 2
 nmap <C-8> :res -5<CR> " decrease pane by 2
 nnoremap <C-H> <C-W><C-H>
@@ -121,6 +126,9 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+map / <Plug>(incsearch-forward)
+map ? <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
 
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"

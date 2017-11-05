@@ -5,3 +5,6 @@
 
 # sidenotes
 notes.md
+
+# System files
+.DS_Store
