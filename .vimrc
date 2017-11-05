@@ -118,8 +118,9 @@ augroup CursorLine
 augroup END
 
 " HotKeys
-nmap <C-7> :res +5<CR> " increase pane by 2
-nmap <C-8> :res -5<CR> " decrease pane by 2
+nmap ++ :vertical resize +5<CR>" decrease pane by 2
+nmap -- :vertical resize -5<CR>" decrease pane by 2
+nmap == <C-W><C-=>"              equalize windows
 nnoremap <C-H> <C-W><C-H>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
