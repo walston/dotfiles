@@ -27,7 +27,9 @@ Plugin 'haya14busa/incsearch.vim'
 
 " Project Management
 Plugin 'airblade/vim-gitgutter'
-Plugin 'ctrlpvim/ctrlp.vim'         " Fuzzy Search
+Plugin 'junegunn/fzf',
+\ {'dir': '/usr/local/opt/fzf', 'do': './install --all'}
+Plugin 'junegunn/fzf.vim'           " Fuzzy Search
 Plugin 'scrooloose/nerdtree'        " Project Directory Tree
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'w0rp/ale'                   " Linting
@@ -118,15 +120,16 @@ augroup CursorLine
 augroup END
 
 " HotKeys
-nmap ++ :vertical resize +5<CR>" decrease pane by 2
-nmap -- :vertical resize -5<CR>" decrease pane by 2
-nmap == <C-W><C-=>"              equalize windows
+nmap ++ :vertical resize +5<CR>" increase pane by 2 vertically
+nmap -- :vertical resize -5<CR>" decrease pane by 2 vertically
+nmap ,+ :resize +5<CR>"          increase pane by 2
+nmap ,- :resize -5<CR>"          decrease pane by 2
+nmap == <C-W><C-=>"              equalize panes
 nnoremap <C-H> <C-W><C-H>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
+map <C-P> :Files<CR>
 map / <Plug>(incsearch-forward)
 map ? <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
