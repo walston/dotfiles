@@ -10,6 +10,7 @@ colorscheme onedark
 
 hi StatusLine guibg=#04080f
 hi StatusLineBufferNumber guibg=#04080f guifg=#56b6c2
+hi StatusLineGitInfo guibg=#04080f guifg=#A42ED4
 hi StatusLineFileName guibg=#04080f guifg=#61afef
 hi StatusLineAuxData guibg=#04080f guifg=#5c6370
 

@@ -18,8 +18,6 @@ syntax off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-let g:ycm_confirm_extra_conf = 0
-
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'maralla/completor.vim'
 
@@ -29,15 +27,15 @@ Plugin 'haya14busa/incsearch.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'junegunn/fzf',
 \ {'dir': '/usr/local/opt/fzf', 'do': './install --all'}
-Plugin 'junegunn/fzf.vim'           " Fuzzy Search
-Plugin 'scrooloose/nerdtree'        " Project Directory Tree
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'junegunn/fzf.vim'           " Fuzzy Search (files/content)
+Plugin 'tpope/vim-vinegar'          " FileBrowser Plugin
+Plugin 'tpope/vim-fugitive'         " Git integration
 Plugin 'w0rp/ale'                   " Linting
 
 " JavaScript
 Plugin 'isRuslan/vim-es6'           " ECMAscript
 
-" TypeScript
+" Angular Development
 Plugin 'Quramy/tsuquyomi'           " TypeScript
 Plugin 'leafgarland/typescript-vim' " TS Syntax Highlighting
 Plugin 'Quramy/vim-js-pretty-template' "Template String Highlighting
@@ -88,17 +86,19 @@ hi StatusLine ctermbg=8
 hi StatusLineBufferNumber ctermbg=8 ctermfg=5
 hi StatusLineFileName ctermbg=8 ctermfg=10
 hi StatusLineAuxData ctermbg=8 ctermfg=6
+hi StatusLineGitInfo ctermbg=8 ctermfg=5
 
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 
 if has('statusline')
   set statusline=%#StatusLineBufferNumber#     " set highlighting
   set statusline+=%-2.2n\                      " buffer number
+  set statusline+=%#StatusLineGitInfo#         " Git Branch
+  set statusline+=%{fugitive#statusline()}     "
   set statusline+=%#StatusLineFileName#        " set highlighting
-  set statusline+=%f\                          " file name
+  set statusline+=\ %f\                        " file name
   set statusline+=%#StatusLineAuxData#         " set highlighting
   set statusline+=%h%m%r%w\                    " flags
   set statusline+=%{strlen(&ft)?&ft:'none'},   " file type
@@ -112,11 +112,11 @@ if has('statusline')
 endif
 
 augroup CursorLine
-    au!
-    au VimEnter * setlocal cursorline
-    au WinEnter * setlocal cursorline
-    au BufWinEnter * setlocal cursorline
-    au WinLeave * setlocal nocursorline
+  au!
+  au VimEnter * setlocal cursorline
+  au WinEnter * setlocal cursorline
+  au BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
 augroup END
 
 " HotKeys
@@ -129,14 +129,16 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
+" ** File Management
 map <C-P> :Files<CR>
+map <C-\> :Explore<CR>
+" ** Searching
 map / <Plug>(incsearch-forward)
 map ? <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
+" F10 reveals which HighlightSyntax a given char belongs to
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-
-let g:ctrlp_custom_ignore = { 'dir': 'node_modules$' }
