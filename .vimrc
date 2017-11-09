@@ -8,8 +8,20 @@ set backspace=indent,eol,start
 set laststatus=2
 set splitbelow
 set splitright
+set colorcolumn=80,140
 set rnu
 set nu
+
+if executable('ag')
+  " Ag is an external dependency, not a Plugin
+  set grepprg=ag\ --nogroup\ --nocolor
+endif
+
+" Plugins ----------------------------------- {{{
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
+augroup END
 
 filetype off
 syntax off
@@ -48,10 +60,10 @@ Plugin 'joshdick/onedark.vim'       " Color scheme
 
 call vundle#end()
 filetype plugin indent on
-
 syntax on
+" }}}
 
-"Syntax Highlighting
+" Basic Syntax Highlighting Overrides -------- {{{
 hi Normal ctermbg=none ctermfg=7 cterm=none
 hi Type ctermbg=none ctermfg=5 cterm=none
 hi Keyword ctermbg=none ctermfg=5 cterm=none
@@ -72,11 +84,13 @@ hi Error ctermbg=9 ctermfg=16 cterm=none
 hi DiffAdd ctermbg=2 ctermfg=0 cterm=none
 hi DiffChange ctermbg=3 ctermfg=0 cterm=none
 hi DiffDelete ctermbg=1 ctermfg=0 cterm=none
+" }}}
 
-"Chrome Highlighting
+" Window Edge Highlighting ------------------ {{{
 hi LineNr ctermfg=7 ctermbg=0 cterm=none
 hi StatusLineNC ctermfg=0 ctermbg=8 cterm=none
 hi VertSplit ctermfg=0 ctermbg=8 cterm=none
+hi ColorColumn ctermbg=8
 
 hi TabLine ctermbg=8 ctermfg=7 cterm=underline
 hi TabLineSel ctermbg=8 ctermfg=10 cterm=underline
@@ -87,10 +101,6 @@ hi StatusLineBufferNumber ctermbg=8 ctermfg=5
 hi StatusLineFileName ctermbg=8 ctermfg=10
 hi StatusLineAuxData ctermbg=8 ctermfg=6
 hi StatusLineGitInfo ctermbg=8 ctermfg=5
-
-if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor
-endif
 
 if has('statusline')
   set statusline=%#StatusLineBufferNumber#     " set highlighting
@@ -118,8 +128,9 @@ augroup CursorLine
   au BufWinEnter * setlocal cursorline
   au WinLeave * setlocal nocursorline
 augroup END
+" }}}
 
-" HotKeys
+" Mappings ---------------------------------------------- {{{
 nmap ++ :vertical resize +5<CR>" increase pane by 2 vertically
 nmap -- :vertical resize -5<CR>" decrease pane by 2 vertically
 nmap ,+ :resize +5<CR>"          increase pane by 2
@@ -141,4 +152,5 @@ map g/ <Plug>(incsearch-stay)
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+" }}}
 
