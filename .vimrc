@@ -1,16 +1,19 @@
 set nocompatible
+set nowrap
+set nolinebreak
+set expandtab
+set splitbelow
+set splitright
+set rnu
+set nu
 set background=dark
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
-set expandtab
+set foldmethod=marker
 set backspace=indent,eol,start
 set laststatus=2
-set splitbelow
-set splitright
 set colorcolumn=80,140
-set rnu
-set nu
 
 if executable('ag')
   " Ag is an external dependency, not a Plugin
@@ -45,7 +48,7 @@ Plugin 'tpope/vim-fugitive'         " Git integration
 Plugin 'w0rp/ale'                   " Linting
 
 " JavaScript
-Plugin 'isRuslan/vim-es6'           " ECMAscript
+Plugin 'othree/yajs.vim'
 
 " Angular Development
 Plugin 'Quramy/tsuquyomi'           " TypeScript
@@ -57,10 +60,16 @@ Plugin 'othree/html5.vim'           " HTML5
 Plugin 'gko/vim-coloresque'         " Pigment style HiLite
 Plugin 'SirVer/ultisnips'
 Plugin 'joshdick/onedark.vim'       " Color scheme
+Plugin 'kergoth/vim-hilinks'
 
 call vundle#end()
+  " Local Plugins {{{
+  " set rtp+=,~/repos/typescript-vim
+  " set rtp+=,~/repos/typescript.vim
+  " }}}
 filetype plugin indent on
 syntax on
+let syntastic_mode_map = { 'passive_filetypes': ['html'] }
 " }}}
 
 " Basic Syntax Highlighting Overrides -------- {{{
@@ -76,11 +85,13 @@ hi Function ctermbg=none ctermfg=4 cterm=none
 hi Statement ctermbg=none ctermfg=15 cterm=none
 hi MatchParen ctermbg=none ctermfg=7 cterm=none
 hi Special ctermbg=none ctermfg=3 cterm=none
-hi Comment ctermbg=none ctermfg=none cterm=none
+hi Comment ctermbg=none ctermfg=066 cterm=none
 hi PreProc ctermbg=none ctermfg=7 cterm=none
 hi Todo ctermbg=8 ctermbg=5 cterm=italic
 hi Underlined ctermbg=none ctermfg=none cterm=underline
-hi Error ctermbg=9 ctermfg=16 cterm=none
+hi Error ctermbg=124 ctermfg=15 cterm=none
+hi SpellBad ctermbg=124 ctermfg=15 cterm=underline
+hi SpellCap ctermbg=220 ctermfg=0 cterm=underline
 hi DiffAdd ctermbg=2 ctermfg=0 cterm=none
 hi DiffChange ctermbg=3 ctermfg=0 cterm=none
 hi DiffDelete ctermbg=1 ctermfg=0 cterm=none
@@ -90,7 +101,9 @@ hi DiffDelete ctermbg=1 ctermfg=0 cterm=none
 hi LineNr ctermfg=7 ctermbg=0 cterm=none
 hi StatusLineNC ctermfg=0 ctermbg=8 cterm=none
 hi VertSplit ctermfg=0 ctermbg=8 cterm=none
-hi ColorColumn ctermbg=8
+hi ColorColumn ctermbg=0 ctermfg=none
+hi CursorLine ctermbg=8 ctermfg=none cterm=none
+hi Folded ctermbg=8 ctermfg=15
 
 hi TabLine ctermbg=8 ctermfg=7 cterm=underline
 hi TabLineSel ctermbg=8 ctermfg=10 cterm=underline
@@ -106,7 +119,7 @@ if has('statusline')
   set statusline=%#StatusLineBufferNumber#     " set highlighting
   set statusline+=%-2.2n\                      " buffer number
   set statusline+=%#StatusLineGitInfo#         " Git Branch
-  set statusline+=%{fugitive#statusline()}     "
+  set statusline+=%{fugitive#statusline()}
   set statusline+=%#StatusLineFileName#        " set highlighting
   set statusline+=\ %f\                        " file name
   set statusline+=%#StatusLineAuxData#         " set highlighting
@@ -131,10 +144,10 @@ augroup END
 " }}}
 
 " Mappings ---------------------------------------------- {{{
-nmap ++ :vertical resize +5<CR>" increase pane by 2 vertically
-nmap -- :vertical resize -5<CR>" decrease pane by 2 vertically
-nmap ,+ :resize +5<CR>"          increase pane by 2
-nmap ,- :resize -5<CR>"          decrease pane by 2
+nmap ,+ :vertical resize +5<CR>" increase pane by 2
+nmap ,- :vertical resize -5<CR>" decrease pane by 2
+nmap ++ :resize +5<CR>"          increase pane by 2 vertically
+nmap -- :resize -5<CR>"          decrease pane by 2 vertically
 nmap == <C-W><C-=>"              equalize panes
 nnoremap <C-H> <C-W><C-H>
 nnoremap <C-J> <C-W><C-J>
@@ -149,8 +162,11 @@ map ? <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
 " F10 reveals which HighlightSyntax a given char belongs to
-map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+" map <F10>
+      " \ :echo
+      " \ 'hi<' . synIDattr(synID(line("."),col("."),1),"name") . '> ' .
+      " \ 'trans<' . synIDattr(synID(line("."),col("."),0),"name") . '> ' .
+      " \ 'lo<' . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . '>'
+      " \<CR>
 " }}}
 
