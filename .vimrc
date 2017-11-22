@@ -14,6 +14,7 @@ set foldmethod=marker
 set backspace=indent,eol,start
 set laststatus=2
 set colorcolumn=80,140
+set textwidth=0
 
 if executable('ag')
   " Ag is an external dependency, not a Plugin
@@ -57,6 +58,7 @@ Plugin 'Quramy/vim-js-pretty-template' "Template String Highlighting
 Plugin 'othree/html5.vim'           " HTML5
 
 " Cool stuff
+Plugin 'tpope/vim-surround'
 Plugin 'gko/vim-coloresque'         " Pigment style HiLite
 Plugin 'SirVer/ultisnips'
 Plugin 'joshdick/onedark.vim'       " Color scheme
@@ -74,7 +76,7 @@ let syntastic_mode_map = { 'passive_filetypes': ['html'] }
 
 " Basic Syntax Highlighting Overrides -------- {{{
 hi Normal ctermbg=none ctermfg=7 cterm=none
-hi Type ctermbg=none ctermfg=5 cterm=none
+hi Type ctermbg=none ctermfg=228 cterm=none
 hi Keyword ctermbg=none ctermfg=5 cterm=none
 hi Constant ctermbg=none ctermfg=3 cterm=none
 hi String ctermbg=none ctermfg=2 cterm=none
@@ -83,7 +85,7 @@ hi Boolean ctermbg=none ctermfg=3 cterm=none
 hi Identifier ctermbg=none ctermfg=1 cterm=none
 hi Function ctermbg=none ctermfg=4 cterm=none
 hi Statement ctermbg=none ctermfg=15 cterm=none
-hi MatchParen ctermbg=none ctermfg=7 cterm=none
+hi MatchParen ctermbg=26 ctermfg=none cterm=none
 hi Special ctermbg=none ctermfg=3 cterm=none
 hi Comment ctermbg=none ctermfg=066 cterm=none
 hi PreProc ctermbg=none ctermfg=7 cterm=none
@@ -115,13 +117,24 @@ hi StatusLineFileName ctermbg=8 ctermfg=10
 hi StatusLineAuxData ctermbg=8 ctermfg=6
 hi StatusLineGitInfo ctermbg=8 ctermfg=5
 
+function Git()
+  let l:git=fugitive#statusline()
+  let l:git=substitute(l:git,"[Git\(","(","")
+  let l:git=substitute(l:git,"\)]",")","")
+  return l:git
+endfunction
+
+function Path()
+  return expand('%:t')
+endfunction
+
 if has('statusline')
   set statusline=%#StatusLineBufferNumber#     " set highlighting
-  set statusline+=%-2.2n\                      " buffer number
+  set statusline+=%-2.2n                       " buffer number
   set statusline+=%#StatusLineGitInfo#         " Git Branch
-  set statusline+=%{fugitive#statusline()}
+  set statusline+=%{Git()}
   set statusline+=%#StatusLineFileName#        " set highlighting
-  set statusline+=\ %f\                        " file name
+  set statusline+=\ %{Path()}\                 " file name
   set statusline+=%#StatusLineAuxData#         " set highlighting
   set statusline+=%h%m%r%w\                    " flags
   set statusline+=%{strlen(&ft)?&ft:'none'},   " file type
@@ -132,6 +145,7 @@ if has('statusline')
   set statusline+=%=                           " ident to the right
   set statusline+=0x%-8B\                      " character code under cursor
   set statusline+=@%-7.(%l,%c%V%)\ %<%P        " cursor position/offset
+
 endif
 
 augroup CursorLine
@@ -160,13 +174,4 @@ map <C-\> :Explore<CR>
 map / <Plug>(incsearch-forward)
 map ? <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
-
-" F10 reveals which HighlightSyntax a given char belongs to
-" map <F10>
-      " \ :echo
-      " \ 'hi<' . synIDattr(synID(line("."),col("."),1),"name") . '> ' .
-      " \ 'trans<' . synIDattr(synID(line("."),col("."),0),"name") . '> ' .
-      " \ 'lo<' . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . '>'
-      " \<CR>
-" }}}
 
