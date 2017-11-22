@@ -1,8 +1,14 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=/urs/local/bin:$PATH
+export PATH=$PATH:.
+export PATH=$PATH:~/bin
+export PATH=$PATH:~/bin/TEE-CLC-12.0.2
+export PATH=$PATH:~/bin/git-tf-2.0.3.20131219
+export PATH="/usr/local/opt/go@1.7/bin:$PATH"
+export GOPATH="/Users/nwalston/go"
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/nathanielwalston/.oh-my-zsh
+export ZSH=/Users/nwalston/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -63,14 +69,17 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-export VISUAL=/usr/bin/vim
-export EDITOR=/usr/bin/vim
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -81,4 +90,13 @@ export EDITOR=/usr/bin/vim
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-~/Repos/starfield/starfield
+source ~/.tfsrc
+
+# I like the robbyrussel theme, but a couple updates w/ Fira Code font are nice
+local ret_status="%(?:%{$fg_bold[green]%}->:%{$fg_bold[red]%}->)"
+PROMPT='${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
+
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[magenta]%}(%{$fg[red]%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[magenta]%}) %{$fg_bold[yellow]%}∆"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[magenta]%})"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
