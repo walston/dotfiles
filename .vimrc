@@ -117,15 +117,11 @@ hi StatusLineFileName ctermbg=8 ctermfg=10
 hi StatusLineAuxData ctermbg=8 ctermfg=6
 hi StatusLineGitInfo ctermbg=8 ctermfg=5
 
-function Git()
+function! Git()
   let l:git=fugitive#statusline()
   let l:git=substitute(l:git,"[Git\(","(","")
   let l:git=substitute(l:git,"\)]",")","")
   return l:git
-endfunction
-
-function Path()
-  return expand('%:t')
 endfunction
 
 if has('statusline')
@@ -134,7 +130,7 @@ if has('statusline')
   set statusline+=%#StatusLineGitInfo#         " Git Branch
   set statusline+=%{Git()}
   set statusline+=%#StatusLineFileName#        " set highlighting
-  set statusline+=\ %{Path()}\                 " file name
+  set statusline+=\ %{expand('%:t')}\                 " file name
   set statusline+=%#StatusLineAuxData#         " set highlighting
   set statusline+=%h%m%r%w\                    " flags
   set statusline+=%{strlen(&ft)?&ft:'none'},   " file type
