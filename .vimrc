@@ -154,20 +154,39 @@ augroup END
 " }}}
 
 " Mappings ---------------------------------------------- {{{
-nmap ,+ :vertical resize +5<CR>" increase pane by 2
-nmap ,- :vertical resize -5<CR>" decrease pane by 2
-nmap ++ :resize +5<CR>"          increase pane by 2 vertically
-nmap -- :resize -5<CR>"          decrease pane by 2 vertically
-nmap == <C-W><C-=>"              equalize panes
+nnoremap ,+ :vertical resize +5<CR>" increase pane by 2
+nnoremap ,- :vertical resize -5<CR>" decrease pane by 2
+nnoremap ++ :resize +5<CR>"          increase pane by 2 vertically
+nnoremap -- :resize -5<CR>"          decrease pane by 2 vertically
+nnoremap == <C-W><C-=>"              equalize panes
 nnoremap <C-H> <C-W><C-H>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 " ** File Management
-map <C-P> :Files<CR>
-map <C-\> :Explore<CR>
+fun! FileSearch()
+  " Some other things are reliant on fugutive, so this seems safe enough
+  if (strlen(fugitive#statusline()) > 0)
+    GFiles
+  else
+    Files
+  endif
+endfun
+noremap <expr> <C-P> FileSearch()
+noremap <C-\> :Explore<CR>
 " ** Searching
-map / <Plug>(incsearch-forward)
-map ? <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
+nmap / <Plug>(incsearch-forward)
+nmap ? <Plug>(incsearch-backward)
+nmap g/ <Plug>(incsearch-stay)
+" }}}
 
+" AutoCommands ------------------------------------------ {{{
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+" }}}
