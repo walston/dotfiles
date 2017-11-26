@@ -58,9 +58,9 @@ Plugin 'Quramy/vim-js-pretty-template' "Template String Highlighting
 Plugin 'othree/html5.vim'           " HTML5
 
 " Cool stuff
-Plugin 'tpope/vim-surround'
+" Plugin 'tpope/vim-surround'
 Plugin 'gko/vim-coloresque'         " Pigment style HiLite
-Plugin 'SirVer/ultisnips'
+" Plugin 'SirVer/ultisnips'
 Plugin 'joshdick/onedark.vim'       " Color scheme
 Plugin 'kergoth/vim-hilinks'
 
@@ -89,7 +89,7 @@ hi MatchParen ctermbg=26 ctermfg=none cterm=none
 hi Special ctermbg=none ctermfg=3 cterm=none
 hi Comment ctermbg=none ctermfg=066 cterm=none
 hi PreProc ctermbg=none ctermfg=7 cterm=none
-hi Todo ctermbg=8 ctermbg=5 cterm=italic
+hi Todo ctermbg=233 ctermbg=5 cterm=italic
 hi Underlined ctermbg=none ctermfg=none cterm=underline
 hi Error ctermbg=124 ctermfg=15 cterm=none
 hi SpellBad ctermbg=124 ctermfg=15 cterm=underline
@@ -101,21 +101,21 @@ hi DiffDelete ctermbg=1 ctermfg=0 cterm=none
 
 " Window Edge Highlighting ------------------ {{{
 hi LineNr ctermfg=7 ctermbg=0 cterm=none
-hi StatusLineNC ctermfg=0 ctermbg=8 cterm=none
-hi VertSplit ctermfg=0 ctermbg=8 cterm=none
+hi VertSplit ctermfg=0 ctermbg=233 cterm=none
 hi ColorColumn ctermbg=0 ctermfg=none
-hi CursorLine ctermbg=8 ctermfg=none cterm=none
-hi Folded ctermbg=8 ctermfg=15
+hi CursorLine ctermbg=233 ctermfg=none cterm=none
+hi Folded ctermbg=233 ctermfg=15
 
-hi TabLine ctermbg=8 ctermfg=7 cterm=underline
-hi TabLineSel ctermbg=8 ctermfg=10 cterm=underline
-hi TabLineFill ctermbg=8 ctermfg=8 cterm=none
+hi TabLine ctermbg=233 ctermfg=7 cterm=underline
+hi TabLineSel ctermbg=233 ctermfg=10 cterm=underline
+hi TabLineFill ctermbg=233 ctermfg=8 cterm=none
 
-hi StatusLine ctermbg=8
-hi StatusLineBufferNumber ctermbg=8 ctermfg=5
-hi StatusLineFileName ctermbg=8 ctermfg=10
-hi StatusLineAuxData ctermbg=8 ctermfg=6
-hi StatusLineGitInfo ctermbg=8 ctermfg=5
+hi StatusLine ctermbg=232
+hi StatusLineNC ctermfg=0 ctermbg=233 cterm=none
+hi StatusLineBufferNumber ctermbg=232 ctermfg=5
+hi StatusLineFileName ctermbg=232 ctermfg=10
+hi StatusLineAuxData ctermbg=232 ctermfg=6
+hi StatusLineGitInfo ctermbg=232 ctermfg=5
 
 function! Git()
   let l:git=fugitive#statusline()
