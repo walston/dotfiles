@@ -116,19 +116,27 @@ hi StatusLineBufferNumber ctermbg=232 ctermfg=5
 hi StatusLineFileName ctermbg=232 ctermfg=10
 hi StatusLineAuxData ctermbg=232 ctermfg=6
 hi StatusLineGitInfo ctermbg=232 ctermfg=5
+hi StatusLineGitBranch ctermbg=232 ctermfg=1 cterm=bold
 
 function! Git()
   let l:git=fugitive#statusline()
-  let l:git=substitute(l:git,"[Git\(","(","")
-  let l:git=substitute(l:git,"\)]",")","")
+  let l:git=substitute(l:git,"[Git\(","","")
+  let l:git=substitute(l:git,"\)]","","")
   return l:git
 endfunction
 
 if has('statusline')
+  let s:git=Git()
   set statusline=%#StatusLineBufferNumber#     " set highlighting
   set statusline+=%-2.2n                       " buffer number
-  set statusline+=%#StatusLineGitInfo#         " Git Branch
-  set statusline+=%{Git()}
+  if (strlen(s:git)>0)
+    set statusline+=%#StatusLineGitInfo#         " Git Branch
+    set statusline+=(
+    set statusline+=%#StatusLineGitBranch#
+    set statusline+=%{Git()}
+    set statusline+=%#StatusLineGitInfo#         " Git Branch
+    set statusline+=)
+  endif
   set statusline+=%#StatusLineFileName#        " set highlighting
   set statusline+=\ %{expand('%:t')}\                 " file name
   set statusline+=%#StatusLineAuxData#         " set highlighting
