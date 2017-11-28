@@ -104,8 +104,8 @@ hi DiffDelete ctermbg=1 ctermfg=0 cterm=none
 hi LineNr ctermfg=7 ctermbg=0 cterm=none
 hi VertSplit ctermfg=0 ctermbg=233 cterm=none
 hi ColorColumn ctermbg=0 ctermfg=none
-hi CursorLine ctermbg=233 ctermfg=none cterm=none
-hi Folded ctermbg=233 ctermfg=15
+hi CursorLine ctermbg=232 ctermfg=none cterm=none
+hi Folded ctermbg=234 ctermfg=15
 
 hi TabLine ctermbg=233 ctermfg=7 cterm=underline
 hi TabLineSel ctermbg=233 ctermfg=10 cterm=underline
@@ -113,33 +113,35 @@ hi TabLineFill ctermbg=233 ctermfg=8 cterm=none
 
 hi StatusLine ctermbg=232
 hi StatusLineNC ctermfg=0 ctermbg=233 cterm=none
-hi StatusLineBufferNumber ctermbg=232 ctermfg=5
+hi StatusLineBufferNumber ctermbg=232 ctermfg=12 cterm=bold
 hi StatusLineFileName ctermbg=232 ctermfg=10
 hi StatusLineAuxData ctermbg=232 ctermfg=6
 hi StatusLineGitInfo ctermbg=232 ctermfg=5
 hi StatusLineGitBranch ctermbg=232 ctermfg=1 cterm=bold
 
 function! Git()
-  let l:git=fugitive#statusline()
-  let l:git=substitute(l:git,"[Git\(","","")
-  let l:git=substitute(l:git,"\)]","","")
-  return l:git
+  let l:branch=system('git rev-parse --abbrev-ref HEAD')
+  if (match(l:branch,'^fatal:',) < 0)
+    return substitute(l:branch,'\n','','')
+  else
+    return ''
+  endif
 endfunction
 
 if has('statusline')
-  let s:git=Git()
+  let s:GitBranch=Git()
   set statusline=%#StatusLineBufferNumber#     " set highlighting
-  set statusline+=%-2.2n                       " buffer number
-  if (strlen(s:git)>0)
-    set statusline+=%#StatusLineGitInfo#         " Git Branch
+  set statusline+=%5.5n\                       " buffer number
+  if (strlen(s:GitBranch)>0)
+    set statusline+=%#StatusLineGitInfo#
     set statusline+=(
     set statusline+=%#StatusLineGitBranch#
     set statusline+=%{Git()}
-    set statusline+=%#StatusLineGitInfo#         " Git Branch
-    set statusline+=)
+    set statusline+=%#StatusLineGitInfo#
+    set statusline+=)\                         " set Git branch
   endif
   set statusline+=%#StatusLineFileName#        " set highlighting
-  set statusline+=\ %{expand('%:t')}\                 " file name
+  set statusline+=%t\                          " file name
   set statusline+=%#StatusLineAuxData#         " set highlighting
   set statusline+=%h%m%r%w\                    " flags
   set statusline+=%{strlen(&ft)?&ft:'none'},   " file type
@@ -150,7 +152,6 @@ if has('statusline')
   set statusline+=%=                           " ident to the right
   set statusline+=0x%-8B\                      " character code under cursor
   set statusline+=@%-7.(%l,%c%V%)\ %<%P        " cursor position/offset
-
 endif
 
 augroup CursorLine
