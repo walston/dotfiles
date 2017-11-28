@@ -68,6 +68,7 @@ call vundle#end()
   " Local Plugins {{{
   " set rtp+=,~/repos/typescript-vim
   " set rtp+=,~/repos/typescript.vim
+  set rtp+=/usr/local/opt/fzf       " FZF is installed globally
   " }}}
 filetype plugin indent on
 syntax on
@@ -167,9 +168,9 @@ nnoremap <C-L> <C-W><C-L>
 fun! FileSearch()
   " Some other things are reliant on fugutive, so this seems safe enough
   if (strlen(fugitive#statusline()) > 0)
-    GFiles
+    call fzf#run({'source': 'git ls-files'})
   else
-    Files
+    call fzf#run({'source': 'find .'})
   endif
 endfun
 noremap <expr> <C-P> FileSearch()
