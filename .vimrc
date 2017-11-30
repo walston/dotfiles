@@ -173,17 +173,19 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
+
 " ** File Management
 fun! FileSearch()
   " Some other things are reliant on fugutive, so this seems safe enough
   if (strlen(fugitive#statusline()) > 0)
-    call fzf#run({'source': 'git ls-files'})
+    call fzf#run({'source': 'git ls-files', 'down': '40%'})
   else
-    call fzf#run({'source': 'find .'})
+    call fzf#run({'source': 'find .', 'down': '40%'})
   endif
 endfun
 noremap <expr> <C-P> FileSearch()
 noremap <C-\> :Explore<CR>
+
 " ** Searching
 nmap / <Plug>(incsearch-forward)
 nmap ? <Plug>(incsearch-backward)
