@@ -3,6 +3,9 @@
 *.swp
 *~
 
+# VSCode
+.vscode
+
 # sidenotes
 notes.md
 
