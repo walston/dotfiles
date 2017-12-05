@@ -67,7 +67,7 @@ Plugin 'kergoth/vim-hilinks'
 call vundle#end()
   " Local Plugins {{{
   " set rtp+=,~/repos/typescript-vim
-  " set rtp+=,~/repos/typescript.vim
+  " set rtp+=,~/repos/ts-vim
   set rtp+=/usr/local/opt/fzf       " FZF is installed globally
   " }}}
 filetype plugin indent on
@@ -87,7 +87,7 @@ hi Identifier ctermbg=none ctermfg=1 cterm=none
 hi Function ctermbg=none ctermfg=4 cterm=none
 hi Statement ctermbg=none ctermfg=15 cterm=none
 hi MatchParen ctermbg=26 ctermfg=none cterm=none
-hi Special ctermbg=none ctermfg=3 cterm=none
+hi Special ctermbg=none ctermfg=12 cterm=none
 hi Comment ctermbg=none ctermfg=066 cterm=none
 hi PreProc ctermbg=none ctermfg=7 cterm=none
 hi Todo ctermbg=233 ctermbg=5 cterm=italic
