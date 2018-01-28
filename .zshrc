@@ -5,10 +5,10 @@ export PATH=$PATH:~/bin
 export PATH=$PATH:~/bin/TEE-CLC-12.0.2
 export PATH=$PATH:~/bin/git-tf-2.0.3.20131219
 export PATH="/usr/local/opt/go@1.7/bin:$PATH"
-export GOPATH="/Users/nwalston/go"
+export GOPATH="~/go"
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/nwalston/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -90,7 +90,10 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source ~/.tfsrc
+FILE=~/.tfsrc
+if [ -f $FILE ]; then
+  source ~/.tfsrc
+fi
 
 # I like the robbyrussel theme, but a couple updates w/ Fira Code font are nice
 local ret_status="%(?:%{$fg_bold[green]%}->:%{$fg_bold[red]%}->)"
