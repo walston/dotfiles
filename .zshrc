@@ -90,9 +90,14 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-FILE=~/.tfsrc
-if [ -f $FILE ]; then
-  source ~/.tfsrc
+TFSRC=~/.tfsrc
+if [ -f $TFSRC ]; then
+  source $TFSRC
+fi
+
+STARFIELD=~/Repos/starfield/starfield
+if [ -x $STARFIELD ]; then
+  $STARFIELD
 fi
 
 # I like the robbyrussel theme, but a couple updates w/ Fira Code font are nice
@@ -103,3 +108,5 @@ ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[magenta]%}(%{$fg[red]%}"
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[magenta]%}) %{$fg_bold[yellow]%}∆"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[magenta]%})"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
+
+
