@@ -89,6 +89,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias time="/usr/bin/time"
+alias dc="docker-compose"
 
 TFSRC=~/.tfsrc
 if [ -f $TFSRC ]; then
