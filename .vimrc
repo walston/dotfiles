@@ -53,7 +53,7 @@ Plugin 'othree/yajs.vim'
 
 " Angular Development
 Plugin 'Quramy/tsuquyomi'           " TypeScript
-Plugin 'leafgarland/typescript-vim' " TS Syntax Highlighting
+" Plugin 'leafgarland/typescript-vim' " TS Syntax Highlighting
 Plugin 'Quramy/vim-js-pretty-template' "Template String Highlighting
 Plugin 'othree/html5.vim'           " HTML5
 
@@ -67,7 +67,7 @@ Plugin 'kergoth/vim-hilinks'
 call vundle#end()
   " Local Plugins {{{
   " set rtp+=,~/repos/typescript-vim
-  " set rtp+=,~/repos/ts-vim
+  set rtp+=,~/repos/ts-vim
   set rtp+=/usr/local/opt/fzf       " FZF is installed globally
   " }}}
 filetype plugin indent on

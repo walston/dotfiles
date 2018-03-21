@@ -99,7 +99,7 @@ fi
 
 STARFIELD=~/Repos/starfield/starfield
 if [ -x $STARFIELD ]; then
-  $STARFIELD
+  $STARFIELD $(whoami)
 fi
 
 # I like the robbyrussel theme, but a couple updates w/ Fira Code font are nice
