@@ -202,3 +202,7 @@ endfun
 
 autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 " }}}
+
+" Netrw ----------------------------------------------- {{{
+let g:netrw_liststyle = 3
+" }}}
