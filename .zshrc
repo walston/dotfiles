@@ -5,7 +5,12 @@ export PATH=$PATH:~/bin
 export PATH=$PATH:~/bin/TEE-CLC-12.0.2
 export PATH=$PATH:~/bin/git-tf-2.0.3.20131219
 export PATH="/usr/local/opt/go@1.7/bin:$PATH"
+
 export GOPATH="~/go"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
