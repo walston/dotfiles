@@ -2,11 +2,9 @@
 export PATH=/urs/local/bin:$PATH
 export PATH=$PATH:.
 export PATH=$PATH:~/bin
-export PATH=$PATH:~/bin/TEE-CLC-12.0.2
-export PATH=$PATH:~/bin/git-tf-2.0.3.20131219
 export PATH="/usr/local/opt/go@1.7/bin:$PATH"
 
-export GOPATH="~/go"
+export GOPATH="$HOME/go"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -108,7 +106,7 @@ if [ -x $STARFIELD ]; then
 fi
 
 # I like the robbyrussel theme, but a couple updates w/ Fira Code font are nice
-local ret_status="%(?:%{$fg_bold[green]%}->:%{$fg_bold[red]%}->)"
+local ret_status="%(?:%{$fg_bold[green]%}⑆:%{$fg_bold[red]%}⑆)"
 PROMPT='${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[magenta]%}(%{$fg[red]%}"
