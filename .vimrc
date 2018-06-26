@@ -16,89 +16,13 @@ set laststatus=2
 set colorcolumn=80,140
 set textwidth=0
 
+filetype on
+syntax on
+
 if executable('ag')
   " Ag is an external dependency, not a Plugin
   set grepprg=ag\ --nogroup\ --nocolor
 endif
-
-" Plugins ----------------------------------- {{{
-augroup filetype_vim
-    autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
-augroup END
-
-filetype off
-syntax off
-
-"Vundle Configuration
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'maralla/completor.vim'
-
-Plugin 'haya14busa/incsearch.vim'
-
-" Project Management
-Plugin 'airblade/vim-gitgutter'
-Plugin 'junegunn/fzf',
-\ {'dir': '/usr/local/opt/fzf', 'do': './install --all'}
-Plugin 'junegunn/fzf.vim'           " Fuzzy Search (files/content)
-Plugin 'tpope/vim-vinegar'          " FileBrowser Plugin
-Plugin 'tpope/vim-fugitive'         " Git integration
-Plugin 'w0rp/ale'                   " Linting
-
-" JavaScript
-Plugin 'othree/yajs.vim'
-
-" Angular Development
-Plugin 'Quramy/tsuquyomi'           " TypeScript
-" Plugin 'leafgarland/typescript-vim' " TS Syntax Highlighting
-Plugin 'Quramy/vim-js-pretty-template' "Template String Highlighting
-Plugin 'othree/html5.vim'           " HTML5
-
-" Cool stuff
-" Plugin 'tpope/vim-surround'
-Plugin 'gko/vim-coloresque'         " Pigment style HiLite
-" Plugin 'SirVer/ultisnips'
-Plugin 'joshdick/onedark.vim'       " Color scheme
-Plugin 'kergoth/vim-hilinks'
-
-call vundle#end()
-  " Local Plugins {{{
-  " set rtp+=,~/repos/typescript-vim
-  set rtp+=,~/repos/ts-vim
-  set rtp+=/usr/local/opt/fzf       " FZF is installed globally
-  " }}}
-filetype plugin indent on
-syntax on
-let syntastic_mode_map = { 'passive_filetypes': ['html'] }
-" }}}
-
-" Basic Syntax Highlighting Overrides -------- {{{
-hi Normal ctermbg=none ctermfg=7 cterm=none
-hi Type ctermbg=none ctermfg=228 cterm=none
-hi Keyword ctermbg=none ctermfg=5 cterm=none
-hi Constant ctermbg=none ctermfg=3 cterm=none
-hi String ctermbg=none ctermfg=2 cterm=none
-hi Number ctermbg=none ctermfg=3 cterm=none
-hi Boolean ctermbg=none ctermfg=3 cterm=none
-hi Identifier ctermbg=none ctermfg=1 cterm=none
-hi Function ctermbg=none ctermfg=4 cterm=none
-hi Statement ctermbg=none ctermfg=15 cterm=none
-hi MatchParen ctermbg=26 ctermfg=none cterm=none
-hi Special ctermbg=none ctermfg=12 cterm=none
-hi Comment ctermbg=none ctermfg=066 cterm=none
-hi PreProc ctermbg=none ctermfg=7 cterm=none
-hi Todo ctermbg=233 ctermbg=5 cterm=italic
-hi Underlined ctermbg=none ctermfg=none cterm=underline
-hi Error ctermbg=124 ctermfg=15 cterm=none
-hi SpellBad ctermbg=124 ctermfg=15 cterm=underline
-hi SpellCap ctermbg=220 ctermfg=0 cterm=underline
-hi DiffAdd ctermbg=2 ctermfg=0 cterm=none
-hi DiffChange ctermbg=3 ctermfg=0 cterm=none
-hi DiffDelete ctermbg=1 ctermfg=0 cterm=none
-" }}}
 
 " Window Edge Highlighting ------------------ {{{
 hi LineNr ctermfg=7 ctermbg=0 cterm=none
