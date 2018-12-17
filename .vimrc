@@ -11,6 +11,7 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set foldmethod=marker
+set foldlevel=5
 set backspace=indent,eol,start
 set laststatus=2
 set colorcolumn=80,140
@@ -25,23 +26,27 @@ if executable('ag')
 endif
 
 " Window Edge Highlighting ------------------ {{{
-hi LineNr ctermfg=7 ctermbg=0 cterm=none
-hi VertSplit ctermfg=0 ctermbg=233 cterm=none
-hi ColorColumn ctermbg=0 ctermfg=none
-hi CursorLine ctermbg=232 ctermfg=none cterm=none
-hi Folded ctermbg=234 ctermfg=15
-
-hi TabLine ctermbg=233 ctermfg=7 cterm=underline
-hi TabLineSel ctermbg=233 ctermfg=10 cterm=underline
-hi TabLineFill ctermbg=233 ctermfg=8 cterm=none
-
-hi StatusLine ctermbg=232
-hi StatusLineNC ctermfg=0 ctermbg=233 cterm=none
-hi StatusLineBufferNumber ctermbg=232 ctermfg=12 cterm=bold
-hi StatusLineFileName ctermbg=232 ctermfg=10
-hi StatusLineAuxData ctermbg=232 ctermfg=6
-hi StatusLineGitInfo ctermbg=232 ctermfg=5
-hi StatusLineGitBranch ctermbg=232 ctermfg=1 cterm=bold
+if $ITERM_PROFILE == 'Light' " Light Theme
+  colorscheme shine
+  hi StatusLine ctermbg=254
+  hi StatusLineNC ctermfg=0 ctermbg=254 cterm=none
+  hi StatusLineBufferNumber ctermbg=254 ctermfg=12 cterm=bold
+  hi StatusLineFileName ctermbg=254 ctermfg=10
+  hi StatusLineAuxData ctermbg=254 ctermfg=6
+  hi StatusLineGitInfo ctermbg=254 ctermfg=5
+  hi StatusLineGitBranch ctermbg=254 ctermfg=1 cterm=bold
+  hi ColorColumn ctermbg=254 ctermfg=none
+else
+  colorscheme elflord
+  hi StatusLine ctermbg=232
+  hi StatusLineNC ctermfg=0 ctermbg=233 cterm=none
+  hi StatusLineBufferNumber ctermbg=232 ctermfg=12 cterm=bold
+  hi StatusLineFileName ctermbg=232 ctermfg=10
+  hi StatusLineAuxData ctermbg=232 ctermfg=6
+  hi StatusLineGitInfo ctermbg=232 ctermfg=5
+  hi StatusLineGitBranch ctermbg=232 ctermfg=1 cterm=bold
+  hi ColorColumn ctermbg=234 ctermfg=none
+endif
 
 function! Git()
   let l:branch=system('git rev-parse --abbrev-ref HEAD')
@@ -98,6 +103,11 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 
+" ** Debugging Vim
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+  \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+  \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
 " ** File Management
 fun! FileSearch()
   " Some other things are reliant on fugutive, so this seems safe enough
@@ -129,4 +139,17 @@ autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 " Netrw ----------------------------------------------- {{{
 let g:netrw_liststyle = 3
+" }}}
+
+" Pangloss/JavaScript ----- {{{
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_flow = 1
+augroup javascript_folding
+  au!
+  au FileType javascript setlocal foldmethod=syntax
+augroup END
+" }}}
+
+" Maralla/completor.vim ---- {{{
+let g:completor_blacklist = ['gitcommit', 'gitrebase']
 " }}}

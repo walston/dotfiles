@@ -5,10 +5,9 @@ export PATH=$PATH:~/bin
 export PATH="/usr/local/opt/go@1.7/bin:$PATH"
 
 export GOPATH="$HOME/go"
-
+export NPM_TOKEN=$(sed 's%^.*=%%' $HOME/.npmrc)
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
@@ -94,16 +93,22 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias time="/usr/bin/time"
 alias dc="docker-compose"
+alias james="rm -rf"
 
-TFSRC=~/.tfsrc
-if [ -f $TFSRC ]; then
-  source $TFSRC
-fi
+function PluginInstall() {
+  if [ -n "$1" ]
+  then
+    local folder=$(echo "$1" | sed s_^.*/__)
+    git clone "https://github.com/$1.git" "$HOME/.vim/pack/packages/start/$folder"
+  fi
+}
 
-STARFIELD=~/Repos/starfield/starfield
-if [ -x $STARFIELD ]; then
-  $STARFIELD $(whoami)
-fi
+function SetProfile() {
+  export ITERM_PROFILE=$1;
+  echo -e "\033]50;SetProfile=$1\a"
+}
+
+~/Repos/splash/splash.sh
 
 # I like the robbyrussel theme, but a couple updates w/ Fira Code font are nice
 local ret_status="%(?:%{$fg_bold[green]%}⑆:%{$fg_bold[red]%}⑆)"
@@ -115,3 +120,5 @@ ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[magenta]%})"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
 
 
+
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
