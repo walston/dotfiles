@@ -49,7 +49,8 @@ else
 endif
 
 function! Git()
-  let l:branch=system('git rev-parse --abbrev-ref HEAD')
+  let l:folder=expand('%:p:h')
+  let l:branch=system('git -C '.l:folder.' rev-parse --abbrev-ref HEAD')
   if (match(l:branch,'^fatal:',) < 0)
     return substitute(l:branch,'\n','','')
   else
@@ -152,4 +153,11 @@ augroup END
 
 " Maralla/completor.vim ---- {{{
 let g:completor_blacklist = ['gitcommit', 'gitrebase']
+" }}}
+
+" Fatih/vim-go ------- {{{
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
 " }}}
