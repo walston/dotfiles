@@ -20,85 +20,36 @@ set textwidth=0
 filetype on
 syntax on
 
-if executable('ag')
-  " Ag is an external dependency, not a Plugin
-  set grepprg=ag\ --nogroup\ --nocolor
-endif
+" Plugins ------------------------------------------------------------------{{{
+call plug#begin()
+Plug 'ayu-theme/ayu-vim'
+Plug 'WolfgangMehner/c-support'
+Plug 'maralla/completor.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'beyondmarc/hlsl.vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'Quramy/tsuquyomi'
+Plug 'SirVer/ultisnips'
+Plug 'tpope/vim-fugitive'
+Plug 'pangloss/vim-javascript'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'walston/statusline'
+Plug 'walston/ft-detect'
+call plug#end()
+" }}}
 
 " Window Edge Highlighting ------------------ {{{
-if $ITERM_PROFILE == 'Light' " Light Theme
-  colorscheme shine
-  hi StatusLine ctermbg=254
-  hi StatusLineNC ctermfg=0 ctermbg=254 cterm=none
-  hi StatusLineBufferNumber ctermbg=254 ctermfg=12 cterm=bold
-  hi StatusLineFileName ctermbg=254 ctermfg=10
-  hi StatusLineAuxData ctermbg=254 ctermfg=6
-  hi StatusLineGitInfo ctermbg=254 ctermfg=5
-  hi StatusLineGitBranch ctermbg=254 ctermfg=1 cterm=bold
-  hi ColorColumn ctermbg=254 ctermfg=none
-else
-  colorscheme elflord
-  hi StatusLine ctermbg=232
-  hi StatusLineNC ctermfg=0 ctermbg=233 cterm=none
-  hi StatusLineBufferNumber ctermbg=232 ctermfg=12 cterm=bold
-  hi StatusLineFileName ctermbg=232 ctermfg=10
-  hi StatusLineAuxData ctermbg=232 ctermfg=6
-  hi StatusLineGitInfo ctermbg=232 ctermfg=5
-  hi StatusLineGitBranch ctermbg=232 ctermfg=1 cterm=bold
-  hi ColorColumn ctermbg=234 ctermfg=none
-endif
-
-function! Git()
-  let l:folder=expand('%:p:h')
-  let l:branch=system('git -C '.l:folder.' rev-parse --abbrev-ref HEAD')
-  if (match(l:branch,'^fatal:',) < 0)
-    return substitute(l:branch,'\n','','')
-  else
-    return ''
-  endif
-endfunction
-
-if has('statusline')
-  let s:GitBranch=Git()
-  set statusline=%#StatusLineBufferNumber#     " set highlighting
-  set statusline+=%5.5n\                       " buffer number
-  if (strlen(s:GitBranch)>0)
-    set statusline+=%#StatusLineGitInfo#
-    set statusline+=(
-    set statusline+=%#StatusLineGitBranch#
-    set statusline+=%{Git()}
-    set statusline+=%#StatusLineGitInfo#
-    set statusline+=)\                         " set Git branch
-  endif
-  set statusline+=%#StatusLineFileName#        " set highlighting
-  set statusline+=%t\                          " file name
-  set statusline+=%#StatusLineAuxData#         " set highlighting
-  set statusline+=%h%m%r%w\                    " flags
-  set statusline+=%{strlen(&ft)?&ft:'none'},   " file type
-  set statusline+=%{(&fenc==\"\"?&enc:&fenc)}, " encoding
-  set statusline+=%{((exists(\"+bomb\")\ &&\ &bomb)?\"B,\":\"\")} " BOM
-  set statusline+=%{&fileformat},              " file format
-  set statusline+=%{&spelllang},               " language of spelling checker
-  set statusline+=%=                           " ident to the right
-  set statusline+=0x%-8B\                      " character code under cursor
-  set statusline+=@%-7.(%l,%c%V%)\ %<%P        " cursor position/offset
-endif
-
-augroup CursorLine
-  au!
-  au VimEnter * setlocal cursorline
-  au WinEnter * setlocal cursorline
-  au BufWinEnter * setlocal cursorline
-  au WinLeave * setlocal nocursorline
-augroup END
+set termguicolors
+let ayucolor="mirage"
+colorscheme ayu
 " }}}
 
 " Mappings ---------------------------------------------- {{{
-nnoremap ,+ :vertical resize +5<CR>" increase pane by 2
-nnoremap ,- :vertical resize -5<CR>" decrease pane by 2
-nnoremap ++ :resize +5<CR>"          increase pane by 2 vertically
-nnoremap -- :resize -5<CR>"          decrease pane by 2 vertically
-nnoremap == <C-W><C-=>"              equalize panes
+nnoremap ,+ :vertical resize +5<CR> " increase pane by 2
+nnoremap ,- :vertical resize -5<CR> " decrease pane by 2
+nnoremap ++ :resize +5<CR>          " increase pane by 2 vertically
+nnoremap -- :resize -5<CR>          " decrease pane by 2 vertically
+nnoremap == <C-W><C-=>              " equalize panes
 nnoremap <C-H> <C-W><C-H>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -121,18 +72,12 @@ endfun
 noremap <expr> <C-P> FileSearch()
 noremap <C-\> :Explore<CR>
 
-" ** Searching
-nmap / <Plug>(incsearch-forward)
-nmap ? <Plug>(incsearch-backward)
-nmap g/ <Plug>(incsearch-stay)
-" }}}
-
 " AutoCommands ------------------------------------------ {{{
 fun! <SID>StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
+  let l = line(".")
+  let c = col(".")
+  %s/\s\+$//e
+  call cursor(l, c)
 endfun
 
 autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
@@ -142,22 +87,3 @@ autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 let g:netrw_liststyle = 3
 " }}}
 
-" Pangloss/JavaScript ----- {{{
-let g:javascript_plugin_jsdoc = 1
-let g:javascript_plugin_flow = 1
-augroup javascript_folding
-  au!
-  au FileType javascript setlocal foldmethod=syntax
-augroup END
-" }}}
-
-" Maralla/completor.vim ---- {{{
-let g:completor_blacklist = ['gitcommit', 'gitrebase']
-" }}}
-
-" Fatih/vim-go ------- {{{
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_types = 1
-let g:go_highlight_operators = 1
-" }}}
