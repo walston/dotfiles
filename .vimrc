@@ -40,7 +40,7 @@ call plug#end()
 
 " Window Edge Highlighting ------------------ {{{
 set termguicolors
-let ayucolor="mirage"
+let ayucolor="dark"
 colorscheme ayu
 " }}}
 
