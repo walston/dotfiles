@@ -23,14 +23,6 @@ alias time="/usr/bin/time"
 alias dc="docker-compose"
 alias james="rm -rf"
 
-function PluginInstall() {
-  if [ -n "$1" ]
-  then
-    local folder=$(echo "$1" | sed s_^.*/__)
-    git clone "https://github.com/$1.git" "$HOME/.vim/pack/packages/start/$folder"
-  fi
-}
-
 function SetProfile() {
   export ITERM_PROFILE=$1;
   echo -e "\033]50;SetProfile=$1\a"
