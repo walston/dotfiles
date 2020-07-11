@@ -1,14 +1,14 @@
-#!/bin/sh
+#!/bin/bash
 
 # ZSH
-curl -fsSL "https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh" | sh
+curl -fsSL "https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh" | bash
 
 # Homebrew
 curl -fsSL "https://raw.githubusercontent.com/Homebrew/install/master/install.sh" | bash \
-  && brew install ctags deno nginx python the_silver_searcher vim
+  && brew install ctags deno nginx python ripgrep the_silver_searcher vim
 
 # NVM
-curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh" | bash
+curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh" | bash
 
 # vim-plugin manager
 curl -fLo "~/.vim/autoload/plug.vim" --create-dirs \
