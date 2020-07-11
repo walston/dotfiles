@@ -16,32 +16,37 @@ set backspace=indent,eol,start
 set laststatus=2
 set colorcolumn=80,140
 set textwidth=0
+set wildmenu
+set path+=**
 
 filetype on
 syntax on
 
 " Plugins ------------------------------------------------------------------{{{
 call plug#begin()
-Plug 'ayu-theme/ayu-vim'
 Plug 'WolfgangMehner/c-support'
 Plug 'maralla/completor.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'skywind3000/gutentags_plus'
 Plug 'beyondmarc/hlsl.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'Quramy/tsuquyomi'
 Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-fugitive'
-Plug 'pangloss/vim-javascript'
-Plug 'peitalin/vim-jsx-typescript'
+Plug 'sheerun/vim-polyglot'
+Plug 'vimwiki/vimwiki'
+
+Plug 'walston/monokai-vim'
 Plug 'walston/statusline'
 Plug 'walston/ft-detect'
+Plug 'walston/ripgrep.vim'
 call plug#end()
-" }}}
 
-" Window Edge Highlighting ------------------ {{{
+" Call after because colorscheme is installed by VimPlug
 set termguicolors
-let ayucolor="dark"
-colorscheme ayu
+colorscheme monokai
 " }}}
 
 " Mappings ---------------------------------------------- {{{
@@ -61,15 +66,9 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
   \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " ** File Management
-fun! FileSearch()
-  " Some other things are reliant on fugutive, so this seems safe enough
-  if (strlen(fugitive#statusline()) > 0)
-    call fzf#run({'source': 'git ls-files', 'down': '40%'})
-  else
-    call fzf#run({'source': 'find .', 'down': '40%'})
-  endif
-endfun
-noremap <expr> <C-P> FileSearch()
+autocmd! FileType fzf set laststatus=0 noshowmode noruler
+noremap <C-F> :Rg<CR>
+noremap <C-P> :call fzf#run(fzf#wrap({'source': 'git ls-tree'}))<CR>
 noremap <C-\> :Explore<CR>
 
 " AutoCommands ------------------------------------------ {{{
