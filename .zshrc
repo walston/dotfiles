@@ -2,14 +2,7 @@
 export PATH=/urs/local/bin:$PATH
 export PATH=$PATH:.
 export PATH=$PATH:~/bin
-
-export GOPATH="$HOME/go"
-export GOROOT="$(brew --prefix golang)/libexec"
-export PATH="$GOPATH:$GOROOT:$PATH"
-
-export NPM_TOKEN=$(sed 's%^.*=%%' $HOME/.npmrc)
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+export QMK_HOME='~/Repos/qmk_firmware'
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
