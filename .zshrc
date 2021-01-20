@@ -13,13 +13,7 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 alias time="/usr/bin/time"
-alias dc="docker-compose"
 alias james="rm -rf"
-
-function SetProfile() {
-  export ITERM_PROFILE=$1;
-  echo -e "\033]50;SetProfile=$1\a"
-}
 
 local ret_status="%(?:%{$fg_bold[green]%}⑆:%{$fg_bold[red]%}⑆)"
 PROMPT='${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
