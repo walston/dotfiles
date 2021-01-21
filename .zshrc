@@ -23,7 +23,9 @@ ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[magenta]%}) %{$fg_bold[yellow]%}∆"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[magenta]%})"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
 
-source ~/.zsh_profile
+if [ -e "~/.zsh_profile" ]; then
+  source ~/.zsh_profile
+fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
