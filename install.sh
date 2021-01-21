@@ -16,11 +16,11 @@ curl -fLo "~/.vim/autoload/plug.vim" --create-dirs \
 
 # OS setup
 # Copies OS setup stuff;
-git clone git@github.com:walston/osx-setup.git ~/Repos/osx-setup \
-  && cd ~/Repos/osx-setup \
-  && ln -s ~/Repos/osx-setup/.zshrc ~/.zshrc \
-  && ln -s ~/Repos/osx-setup/.profile ~/.profile \
-  && ln -s ~/Repos/osx-setup/.bash_profile ~/.bash_profile \
-  && ln -s ~/Repos/osx-setup/.vimrc ~/.vimrc && vim +PluginInstall +qall \
+git clone git@github.com:walston/dotfiles.git ~/Repos/dotfiles \
+  && cd ~/Repos/dotfiles \
+  && ln -s ~/Repos/dotfiles/.zshrc ~/.zshrc \
+  && ln -s ~/Repos/dotfiles/.profile ~/.profile \
+  && ln -s ~/Repos/dotfiles/.bash_profile ~/.bash_profile \
+  && ln -s ~/Repos/dotfiles/.vimrc ~/.vimrc && vim +PluginInstall +qall \
   ;
 
