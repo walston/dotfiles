@@ -18,7 +18,11 @@ curl -fLo "~/.vim/autoload/plug.vim" --create-dirs \
 # Copies OS setup stuff;
 let DOTFILES_DIR="~/Repos/dotfiles" ;
 echo "Installing walston/dotfiles into $DOTFILES_DIR" ;
-git clone git@github.com:walston/dotfiles.git $DOTFILES_DIR ;
+if [ -d "$DOTFILES_DIR" ]; then
+  git -C "$DOTFILES_DIR" pull ;
+else
+  git clone git@github.com:walston/dotfiles.git $DOTFILES_DIR ;
+fi
 
 ln -nsfv $DOTFILES_DIR/.zshrc ~/.zshrc ;
 ln -nsfv $DOTFILES_DIR/.profile ~/.profile ;
