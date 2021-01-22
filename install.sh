@@ -1,12 +1,6 @@
 #!/bin/bash
-command_exists() {
-  if command -v $1 &> /dev/null; then
-    return 1;
-  fi
-}
 
 # ZSH
-if [ command_exists zsh ]; then
 curl -fsSL "https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh" | bash;
 
 # Homebrew
