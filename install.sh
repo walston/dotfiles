@@ -11,7 +11,7 @@ curl -fsSL "https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh" | ba
 
 # Homebrew
 curl -fsSL "https://raw.githubusercontent.com/Homebrew/install/master/install.sh" | bash \
-  && brew install ctags deno nginx python ripgrep vim;
+  && brew install deno nginx ripgrep vim;
 
 # NVM
 curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh" | bash;
