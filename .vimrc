@@ -29,6 +29,7 @@ Plug 'maralla/completor.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'skywind3000/gutentags_plus'
 Plug 'beyondmarc/hlsl.vim'
 Plug 'leafgarland/typescript-vim'
@@ -41,7 +42,6 @@ Plug 'vimwiki/vimwiki'
 Plug 'walston/monokai-vim'
 Plug 'walston/statusline'
 Plug 'walston/ft-detect'
-Plug 'walston/ripgrep.vim'
 call plug#end()
 
 " Call after because colorscheme is installed by VimPlug
