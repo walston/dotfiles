@@ -29,7 +29,6 @@ Plug 'maralla/completor.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'skywind3000/gutentags_plus'
 Plug 'beyondmarc/hlsl.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'Quramy/tsuquyomi'
