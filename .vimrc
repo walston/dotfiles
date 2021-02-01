@@ -25,7 +25,6 @@ syntax on
 " Plugins ------------------------------------------------------------------{{{
 call plug#begin()
 Plug 'WolfgangMehner/c-support'
-Plug 'maralla/completor.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
