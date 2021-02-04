@@ -17,6 +17,7 @@ set laststatus=2
 set colorcolumn=80,140
 set textwidth=0
 set wildmenu
+set signcolumn=number
 set path+=**
 
 filetype on
