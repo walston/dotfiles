@@ -19,6 +19,7 @@ set textwidth=0
 set wildmenu
 set signcolumn=number
 set path+=**
+set showmatch matchtime=3
 
 filetype on
 syntax on
