@@ -1,11 +1,11 @@
 #!/bin/bash
 
-echo "# Installing ZSH" ;
-curl -fsSL "https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh" | bash ;
-
 echo "# Installing Homebrew" ;
 curl -fsSL "https://raw.githubusercontent.com/Homebrew/install/master/install.sh" | bash \
-  && brew install deno jq nginx ripgrep vim ;
+  && brew install deno jq nginx ripgrep vim zsh;
+
+echo "# Installing ZSH" ;
+curl -fsSL "https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh" | bash ;
 
 echo "# Installing NVM" ;
 curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh" | bash ;
