@@ -2,7 +2,6 @@
 export PATH=/urs/local/bin:$PATH
 export PATH=$PATH:.
 export PATH=$PATH:~/bin
-export QMK_HOME='~/Repos/qmk_firmware'
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
