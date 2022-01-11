@@ -2,7 +2,7 @@
 
 echo "# Installing Homebrew" ;
 curl -fsSL "https://raw.githubusercontent.com/Homebrew/install/master/install.sh" | bash \
-  && brew install deno jq nginx ripgrep vim zsh;
+  && brew install git-delta httpie jq nginx ripgrep vim wget zsh;
 
 echo "# Installing ZSH" ;
 curl -fsSL "https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh" | bash ;
