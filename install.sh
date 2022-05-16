@@ -11,8 +11,8 @@ echo "# Installing NVM" ;
 curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh" | bash ;
 
 echo "# Installing vim-plugin manager"
-curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs \
-    "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" ;
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # OS setup
 # Copies OS setup stuff;
