@@ -22,8 +22,8 @@ ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[magenta]%}) %{$fg_bold[yellow]%}∆"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[magenta]%})"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
 
-if [ -e ~/.zsh_profile ]; then
-  source ~/.zsh_profile;
+if [ -e ~/.profile ]; then
+  source ~/.profile;
 fi
 
 export NVM_DIR="$HOME/.nvm"
@@ -53,3 +53,25 @@ if [ -d $NVM_DIR ]; then
   add-zsh-hook chpwd load-nvmrc
   load-nvmrc
 fi
+
+# git helpers -- by Paul Armstrong
+# @see https://paularmstrong.dev/blog/git-helpers/
+function main() {
+  DEFAULT_BRANCH=`git remote show origin | grep "HEAD branch" | sed 's/.*: //'`
+  git checkout $DEFAULT_BRANCH
+  git pull
+}
+
+function rmbranch() {
+  BRANCH=`git rev-parse --abbrev-ref HEAD`
+  DEFAULT_BRANCH=`git remote show origin | grep "HEAD branch" | sed 's/.*: //'`
+  git checkout $DEFAULT_BRANCH
+  git branch -D $BRANCH
+  git pull
+}
+
+function rebase() {
+  DEFAULT_BRANCH=`git remote show origin | grep "HEAD branch" | sed 's/.*: //'`
+  git fetch origin $DEFAULT_BRANCH
+  git rebase origin/$DEFAULT_BRANCH
+}
