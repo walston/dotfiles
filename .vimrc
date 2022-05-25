@@ -37,15 +37,18 @@ Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-fugitive'
 Plug 'sheerun/vim-polyglot'
 Plug 'vimwiki/vimwiki'
+Plug 'kjssad/quantum.vim'
+Plug 'eslint/eslint'
+Plug 'prettier/vim-prettier'
 
-Plug 'walston/monokai-vim'
 Plug 'walston/statusline'
 Plug 'walston/ft-detect'
 call plug#end()
 
 " Call after because colorscheme is installed by VimPlug
 set termguicolors
-colorscheme monokai
+set background=dark
+colorscheme quantum
 " }}}
 
 " Mappings ---------------------------------------------- {{{
@@ -67,7 +70,7 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 " ** File Management
 autocmd! FileType fzf set laststatus=0 noshowmode noruler
 noremap <C-F> :Rg<CR>
-noremap <C-P> :call fzf#run(fzf#wrap({'source': 'git ls-tree'}))<CR>
+noremap <C-P> :GFiles<CR>
 noremap <C-\> :Explore<CR>
 
 " AutoCommands ------------------------------------------ {{{
