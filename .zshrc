@@ -1,6 +1,3 @@
-# If you come from bash you might have to change your $PATH.
-export PATH=/usr/local/bin:$PATH:.:~/bin
-
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 ZSH_THEME="robbyrussell"
@@ -51,6 +48,8 @@ if [ -d $NVM_DIR ]; then
   add-zsh-hook chpwd load-nvmrc
   load-nvmrc
 fi
+
+export PATH=/urs/local/bin:$PATH:.:$HOME/bin
 
 # git helpers -- by Paul Armstrong
 # @see https://paularmstrong.dev/blog/git-helpers/
