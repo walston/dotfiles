@@ -1,13 +1,13 @@
 #!/bin/bash
 
-if [ ! type zsh 2>&- ]; then
+if [ ! type zsh 2>&1 >/dev/null ]; then
   echo "# Installing ZSH" ;
   curl -fsSL "https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh" | bash ;
 else
   echo "# ZSH already installed" ;
 fi
 
-if [ ! type brew 2>&- ]; then
+if [ ! type brew 2>&1 >/dev/null ]; then
   echo "# Installing Homebrew" ;
   curl -fsSL "https://raw.githubusercontent.com/Homebrew/install/master/install.sh" | bash \
     && brew install git-delta httpie jq nginx ripgrep vim wget zsh;
