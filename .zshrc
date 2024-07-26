@@ -4,6 +4,11 @@ fpath+=("$(brew --prefix)/share/zsh/site-functions")
 autoload -U promptinit; promptinit
 prompt pure
 
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+fpath+=("$(brew --prefix)/share/zsh-completions")
+autoload -Uz compinit
+compinit
+
 # Pure prompt styling
 zstyle ':prompt:pure:path' color white
 zstyle ':prompt:pure:prompt:success' color green
