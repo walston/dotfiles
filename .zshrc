@@ -1,13 +1,19 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 
-plugins=(git)
+plugins=(
+  git
+  direnv
+)
 
 source $ZSH/oh-my-zsh.sh
 
 alias time="/usr/bin/time"
 alias james="rm -rf"
+alias vim="/opt/homebrew/bin/nvim"
 
 local ret_status="%(?:%{$fg_bold[green]%}⑇:%{$fg_bold[red]%}⑇)"
 PROMPT='${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
@@ -72,3 +78,24 @@ function rebase() {
   git fetch origin $DEFAULT_BRANCH
   git rebase origin/$DEFAULT_BRANCH
 }
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/work/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/work/miniforge3/etc/profile.d/conda.sh" ]; then
+        . "/Users/work/miniforge3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/work/miniforge3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
