@@ -9,6 +9,8 @@ fpath+=("$(brew --prefix)/share/zsh-completions")
 autoload -Uz compinit
 compinit
 
+source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
 # Pure prompt styling
 zstyle ':prompt:pure:path' color white
 zstyle ':prompt:pure:prompt:success' color green
